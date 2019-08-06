@@ -1,7 +1,15 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>0.1.2</PackageVersion>
+    <Title>RugerTek.AspNetCore.PagoPar</Title>
+    <Authors>RugerTek S.A.</Authors>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/andoni97/RugerTek.AspNetCore.PagoPar</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/andoni97/RugerTek.AspNetCore.PagoPar</RepositoryUrl>
+    <PackageTags>Pagopar pago par rugertek bancard paraguay</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

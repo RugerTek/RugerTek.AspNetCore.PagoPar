@@ -47,19 +47,19 @@ namespace RugerTek.AspNetCore.PagoPar.Services.Implementations
                     PublicKey = _pagoParConfig.PublicKey,
                     Token = $"{_pagoParConfig.PrivateKey}{model.IdPedidoComercio}{model.MontoTotal}".Sha1(),
                     Comprador =
-                {
-                    Ciudad = model.Comprador.Ciudad,
-                    Coordenadas = model.Comprador.Coordenadas,
-                    Direccion = model.Comprador.Direccion,
-                    DireccionReferencia = model.Comprador.DireccionReferencia,
-                    Documento = model.Comprador.Documento,
-                    Email = model.Comprador.Email,
-                    Nombre = model.Comprador.Nombre,
-                    RazonSocial = model.Comprador.RazonSocial,
-                    Ruc = model.Comprador.Ruc,
-                    Telefono = model.Comprador.Telefono,
-                    TipoDocumento = model.Comprador.TipoDocumento
-                }
+                    {
+                        Ciudad = model.Comprador.Ciudad,
+                        Coordenadas = model.Comprador.Coordenadas,
+                        Direccion = model.Comprador.Direccion,
+                        DireccionReferencia = model.Comprador.DireccionReferencia,
+                        Documento = model.Comprador.Documento,
+                        Email = model.Comprador.Email,
+                        Nombre = model.Comprador.Nombre,
+                        RazonSocial = model.Comprador.RazonSocial,
+                        Ruc = model.Comprador.Ruc,
+                        Telefono = model.Comprador.Telefono,
+                        TipoDocumento = model.Comprador.TipoDocumento
+                    }
                 };
                 foreach (var compraItem in model.ComprasItems)
                 {
@@ -103,7 +103,7 @@ namespace RugerTek.AspNetCore.PagoPar.Services.Implementations
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in InitTransactionAsync");
-                throw ex;
+                throw;
             }
         }
 
@@ -120,6 +120,7 @@ namespace RugerTek.AspNetCore.PagoPar.Services.Implementations
                 };
                 var apiResult = await _httpClient.GetTransactionAsync(body);
                 var transaction = apiResult.Resultado.FirstOrDefault();
+                if (transaction is null) return null;
                 var result = new PagoParResult<PagoParTransactionModel>
                 {
                     Respuesta = apiResult.Respuesta,
@@ -142,7 +143,7 @@ namespace RugerTek.AspNetCore.PagoPar.Services.Implementations
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error in GetTransactionInfo");
-                throw ex;
+                throw;
             }
         }
 

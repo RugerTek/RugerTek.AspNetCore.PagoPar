@@ -78,6 +78,12 @@ namespace SampleHost.Controllers
             return Ok(result);
         }
 
+        public async Task<IActionResult> GetTransaction([FromQuery] string hash)
+        {
+            var result = await _pagoParService.GetTransactionInfo(hash);
+            return Ok(result);
+        }
+        
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
